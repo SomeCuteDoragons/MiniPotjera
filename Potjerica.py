@@ -7,27 +7,29 @@ ime=0
 pravilo=0
 izborPravi=0
 nagrada=100
-ponuda=3
+izborPonuda=0
 board=turtle.Screen()
-board.screensize(310,540)
+board.setup(width=400, height=550)
+ploca=[3,3,3,3,3,3,3,3,3] #3 je prazno, 5 je igrač, 7 je lovac
 pPit=0
 ans=0
 bod=0
 
 #Pravila
 def upute():
-    print("\nMini Potjera radi vrlo slično kao normalna Potjera što vidite na televiziji\n")
+    print("\nMini Potjera radi vrlo slično kao normalna Potjera što vidite na televiziji, no ipak ima drukčija pravila\n")
     print("Igra je podijeljena u dva dijela: pojedinačna igra i igra protiv lovca\n")
     print("U prvom dijelu Vi sami odgovarate na pitanja i ovisno o broju Vaših točnih odgovora, toliko će biti završna nagrada u eurima!")
     print("(* nagradu u eurima nećete zapravo dobiti)\n")
     print("Zatim će Vam lovac ponuditi veći ili niži iznos")
-    print("Ako odaberete niži iznos, biti ćete 4 koraka ispred lovca, a viši 2")
-    print("Ako ostanete pri originalnom iznostu, biti ćete 3 koraka ispred lovca\n")
+    print("Ako odaberete niži iznos, biti ćete 3 koraka ispred lovca, a viši 1")
+    print("Ako ostanete pri originalnom iznostu, biti ćete 2 koraka ispred lovca\n")
     print("U drugome dijelu igre ćete igrati protiv lovca")
     print("Bit će Vam prikazano Vaše mjesto i mjesto lovca iza Vas, te zadnje mjesto sa nagradom")
-    print("Svakim točnim odgovorom Vi ili lovac ide za jedno mjesto unaprijed prema nagradi\n")
+    print("Svakim točnim odgovorom Vi ili lovac ide za jedno mjesto unaprijed prema nagradi (nagrada je nakon zadnjeg polja)\n")
     print("Ako Vas lovac uhvati, izgubili ste igru!")
     print("Ako dođete do nagrade prije neg što Vas uhvati, pobijedili ste!")
+    #Razlike od originala: 9 mjesta na ploči umjesto 7, nagrada su totalno drukčije, lovac je random, nema treće runde, prva runda nije na time limitu i sve to
 
 #Pitanja za prvu rundu
 def prvaRunda():
@@ -114,15 +116,15 @@ def prvaRunda():
         case _:
             print("case default error, kako li se to uopće dogodilo?")
 
-
+def drugaRunda():
+    print("lorem ipsum")
 
 #Turtle ploča
 def slikovitiPrikaz():
     print("lorem ipsum")
     
-#Iznos
-def ponuda():
-    print("lorem ipsum")
+
+
 #Pojedinačna igra
 def pojedinac():
     print("Započinjemo sa prvim pitanjem!")
@@ -136,9 +138,30 @@ def pojedinac():
     else:
         nagrada=100+(bod*150)
         print("Bravo! Samo tako nastavite i dobit ćete {0} eura!".format(nagrada))
+
+#Iznos
+def ponuda():
+    global nagrada
+    print("Imam jednu ponudu za tebe, {0}".format(ime))
+    print("Imaš tri opcije! Možeš ostati sa svojih {0} eura, ili si možeš povećati na {1}, ili možda smanjiti na {2}".format(nagrada, ponuda*2, ponuda*0.75))
+    print("Na tebi je da odabereš. Unesi ostajem, povećavam ili smanjujem")
+    izborPonuda=input()
+    izborPonuda=izborPonuda.casefold() 
+    if(izborPonuda=="ostajem"):
+        print("Ostali ste sa {0} eura".format(nagrada))
+    elif(izborPonuda=="povećavam"):
+        print("Povećali ste na {0} eura".format(nagrada*2))
+        nagrada=nagrada*2
+    elif(izborPonuda=="smanjujem"):
+        print("Smanjili ste na {0} eura".format(nagrada*0.75))
+        nagrada=nagrada*0.75
+    else:
+        print("Krivo ste upisali. Pokušajte ponovno")
+        ponuda()
+
 #Lovac igra
 def loviti():
-    print("lorem ipsum")
+    ponuda()
 #Ime i uvod
 print("Dobro došli u Mini Potjeru!")
 print("Mini Potjera je minijaturna, malo jednostavnija verzija Potjere na Vašem računalu")
@@ -166,3 +189,4 @@ pojedinac()
 #Lovac igra uvod
 print("\n\nSuper je prošla igra, ali vrijeme je za igru protiv lovca!")
 print("Moje ime je Laki Topalović i biti ću Vaš lovac za ovu rundu")
+loviti()
