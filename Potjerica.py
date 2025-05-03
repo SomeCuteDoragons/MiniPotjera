@@ -31,6 +31,7 @@ def upute():
 
 #Pitanja za prvu rundu
 def prvaRunda():
+    global bod
     match pPit:
         case 0:
             print("Što radi append metoda u Pythonu?")
@@ -72,6 +73,46 @@ def prvaRunda():
                 print("Nažalost, krivo!")
                 print("Točan odgovor je C) Lærdalstunnelen")
         case 3:
+            print("Kada se otvorila III. Gimnazija, Osijek?")
+            print("A) 1991.")
+            print("B) 1890.")
+            print("C) 1795.")
+            ans=input("Unesite A, B ili C: ")
+            ans = ans.casefold()
+            if(ans=="b" or ans=="b)"):
+                print("Točno!")
+                bod+=1
+            else:
+                print("Nažalost, krivo!")
+                print("Točan odgovor je B) 1890.")
+        case 4:
+            print("Iz koje Kranjčevićeve pjesme dolazi stih 'Kud li se trgom vucare trome, prostačke psine, podvita repa, kičme ko britva'")
+            print("A) Eli! Eli! Iama azavtani!?")
+            print("B) Mojsije")
+            print("C) Gospodskomu Kastoru")
+            ans=input("Unesite A, B ili C: ")
+            ans = ans.casefold()
+            if(ans=="c" or ans=="c)"):
+                print("Točno!")
+                bod+=1
+            else:
+                print("Nažalost, krivo!")
+                print("Točan odgovor je C) Gospodskomu Kastoru")
+        case 5:
+            print("Koje je novo ime uvedeno za odmorište Križ na autocesti A3?")
+            print("A) Novoselec")
+            print("B) Bosutsko")
+            print("C) Marija")
+            ans=input("Unesite A, B ili C: ")
+            ans = ans.casefold()
+            if(ans=="a" or ans=="a)"):
+                print("Točno!")
+                bod+=1
+            else:
+                print("Nažalost, krivo!")
+                print("Točan odgovor je A) Novoselec")
+        case _:
+            print("case default error, kako li se to uopće dogodilo?")
 
 
 
@@ -84,7 +125,17 @@ def ponuda():
     print("lorem ipsum")
 #Pojedinačna igra
 def pojedinac():
-    print("lorem ipsum")
+    print("Započinjemo sa prvim pitanjem!")
+    for i in range(6):
+        global pPit
+        print("\nPitanje {0} od {1}\n".format(i+1,6))
+        prvaRunda()
+        pPit+=1
+    if bod==0:
+        print("Vaša nagrada, ako uopće dođete do nje, je 100 eura!")
+    else:
+        nagrada=100+(bod*150)
+        print("Bravo! Samo tako nastavite i dobit ćete {0} eura!".format(nagrada))
 #Lovac igra
 def loviti():
     print("lorem ipsum")
@@ -115,4 +166,3 @@ pojedinac()
 #Lovac igra uvod
 print("\n\nSuper je prošla igra, ali vrijeme je za igru protiv lovca!")
 print("Moje ime je Laki Topalović i biti ću Vaš lovac za ovu rundu")
-
