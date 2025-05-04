@@ -1,26 +1,64 @@
-#import
+#Python 3.10 je izašao u 2021. godini. Ako nemaš već tu verziju instaliranu...
+#import -> zašto ne from module import? zato što ovako znam da je neka komponenta iz modula dok ju pišem
 import random
 import turtle
 
-#init varijabli 
-ime=0
-pravilo=0
-izborPravi=0
-nagrada=100
-izborPonuda=0
-board=turtle.Screen()
-board.setup(width=400, height=550)
-ploca=[3,3,3,3,3,3,3,3,3] #3 je prazno, 5 je igrač, 7 je lovac
-pPit=0
-ans=0
-bod=0
+#init varijabli -> stavljam si komentare uz svaku varijablu da sada ne bude neka višak koju zaboravim maknuti
+ime=0 #baš se pitam za što ovo služi
+pravilo=0 #da ne ispadne iz petlje bez ponavljanja pravila (nešto što mi se nije dalo implementirati u izboru ponude :3)
+izborPravi=0 #izbor za pravila (zvuči zastrašujuće bez konteksta)
+nagrada=100 #bilo bi glupo da je 0
+izborPonuda=0 #izbor za ponudu
+board=turtle.Screen() #turtle prozor
+board.setup(width=400, height=900) #veličina prozora
+ploca=[3,3,3,3,3,3,3] #3 je prazno, 5 je igrač, 7 je lovac
+pPit=0 #redni broj pitanja pre runde
+ans=0 #odgovori za prvu rundu
+bod=0 #bodovi za prvu rundu
+ans2=0 #odgovori za drugu rundu
+ansL=0 #lovčevi odgovori
+kPoz=0 #pozicija kornjače
+#nema bodova za drugu rundu jer ona tako ne radi
 
 #Turle da bude always on top
 canvas = board.getcanvas()
 root = canvas.winfo_toplevel()
 root.attributes('-topmost', True)
-turtle.goto(-150, -200)
-turtle.fd(225)
+
+#Inicijalizacija ploče u turtlu
+turtle.speed(0)
+turtle.hideturtle()
+turtle.penup()
+turtle.goto(-125, -300)
+turtle.pendown()
+for i in range(8):
+    #kPoz=turtle.position()
+    #print("Pravokutnik {0} je na {1}".format(i+1, kPoz))
+    #Pravokutnik 1 je na (-125.00,-300.00)
+    #Pravokutnik 2 je na (-125.00,-200.00)
+    #Pravokutnik 3 je na (-125.00,-100.00)
+    #Pravokutnik 4 je na (-125.00,0.00)
+    #Pravokutnik 5 je na (-125.00,100.00)
+    #Pravokutnik 6 je na (-125.00,200.00)
+    #Pravokutnik 7 je na (-125.00,300.00)
+    #Nagrada je na (-125.00,400.00)
+    turtle.fillcolor("black")
+    turtle.begin_fill()
+    turtle.forward(125)
+    turtle.right(90)
+    turtle.forward(75)
+    turtle.right(90)
+    turtle.forward(125)
+    turtle.right(90)
+    turtle.forward(75)
+    turtle.right(90)
+    turtle.end_fill()
+    turtle.penup()
+    turtle.goto(-125, -200+(i*100))
+    turtle.pendown()
+turtle.penup()
+turtle.goto(-125, -300)
+
 
 #Pravila
 def upute():
@@ -36,7 +74,7 @@ def upute():
     print("Svakim točnim odgovorom Vi ili lovac ide za jedno mjesto unaprijed prema nagradi (nagrada je nakon zadnjeg polja)\n")
     print("Ako Vas lovac uhvati, izgubili ste igru!")
     print("Ako dođete do nagrade prije neg što Vas uhvati, pobijedili ste!")
-    #Razlike od originala: 9 mjesta na ploči umjesto 7, nagrada su totalno drukčije, lovac je random, nema treće runde, prva runda nije na time limitu i sve to
+    #Razlike od originala: ploča izgleda drukčije ja msm nagrada su totalno drukčije, lovac je random, nema treće runde, prva runda nije na time limitu i sve to
 
 #Pitanja za prvu rundu
 def prvaRunda():
@@ -48,7 +86,7 @@ def prvaRunda():
             print("B) Dodaje element na početak liste")
             print("C) Dodaje element na željeno mjesto u listi")
             ans=input("Unesite A, B ili C: ")
-            ans = ans.casefold() #Nikad ne možeš računati da je end user pametan
+            ans = ans.casefold() 
             if(ans=="a" or ans=="a)"):
                 print("Točno!")
                 bod+=1
@@ -61,7 +99,7 @@ def prvaRunda():
             print("B) Havana")
             print("C) Rabat")
             ans=input("Unesite A, B ili C: ")
-            ans = ans.casefold() #Mora da bude malo slovo
+            ans = ans.casefold() 
             if(ans=="c" or ans=="c)"):
                 print("Točno!")
                 bod+=1
