@@ -15,6 +15,13 @@ pPit=0
 ans=0
 bod=0
 
+#Turle da bude always on top
+canvas = board.getcanvas()
+root = canvas.winfo_toplevel()
+root.attributes('-topmost', True)
+turtle.goto(-150, -200)
+turtle.fd(225)
+
 #Pravila
 def upute():
     print("\nMini Potjera radi vrlo slično kao normalna Potjera što vidite na televiziji, no ipak ima drukčija pravila\n")
@@ -116,20 +123,19 @@ def prvaRunda():
         case _:
             print("case default error, kako li se to uopće dogodilo?")
 
-def drugaRunda():
-    print("lorem ipsum")
 
 #Turtle ploča
-def slikovitiPrikaz():
-    print("lorem ipsum")
+def initTurleBoard():
+    turtle.penup()
+    
     
 
 
 #Pojedinačna igra
 def pojedinac():
     print("Započinjemo sa prvim pitanjem!")
+    global pPit, nagrada, bod
     for i in range(6):
-        global pPit
         print("\nPitanje {0} od {1}\n".format(i+1,6))
         prvaRunda()
         pPit+=1
@@ -143,20 +149,20 @@ def pojedinac():
 def ponuda():
     global nagrada
     print("Imam jednu ponudu za tebe, {0}".format(ime))
-    print("Imaš tri opcije! Možeš ostati sa svojih {0} eura, ili si možeš povećati na {1}, ili možda smanjiti na {2}".format(nagrada, ponuda*2, ponuda*0.75))
+    print("Imaš tri opcije! Možeš ostati sa svojih {0} eura, ili si možeš povećati na {1}, ili možda smanjiti na {2}".format(nagrada, nagrada*2, nagrada*0.75))
     print("Na tebi je da odabereš. Unesi ostajem, povećavam ili smanjujem")
     izborPonuda=input()
     izborPonuda=izborPonuda.casefold() 
     if(izborPonuda=="ostajem"):
-        print("Ostali ste sa {0} eura".format(nagrada))
+        print("Ostali ste sa {0} eura! Pametno.".format(nagrada))
     elif(izborPonuda=="povećavam"):
-        print("Povećali ste na {0} eura".format(nagrada*2))
+        print("Povećali ste na {0} eura! Jako ste hrabri!".format(nagrada*2))
         nagrada=nagrada*2
     elif(izborPonuda=="smanjujem"):
-        print("Smanjili ste na {0} eura".format(nagrada*0.75))
+        print("Smanjili ste na {0} eura! Jeste li sigurni u sebe?".format(nagrada*0.75))
         nagrada=nagrada*0.75
     else:
-        print("Krivo ste upisali. Pokušajte ponovno")
+        print("Krivo ste upisali. Ponovno ću Vas pitati;")
         ponuda()
 
 #Lovac igra
