@@ -11,7 +11,7 @@ nagrada=100 #bilo bi glupo da je 0
 izborPonuda=0 #izbor za ponudu
 board=turtle.Screen() #turtle prozor
 board.setup(width=400, height=900) #veličina prozora
-ploca=[3,3,3,3,3,3,3] #3 je prazno, 5 je igrač, 7 je lovac
+ploca=[3,3,3,3,3,3,3,0] #3 je prazno, 5 je igrač, 7 je lovac, 0 je nagrada
 pPit=0 #redni broj pitanja pre runde
 ans=0 #odgovori za prvu rundu
 bod=0 #bodovi za prvu rundu
@@ -162,11 +162,36 @@ def prvaRunda():
             print("case default error, kako li se to uopće dogodilo?")
 
 
-#Turtle ploča
+#Turtle ploča definirana po originalnoj ponudi
 def initTurleBoard():
+    global ploca
+    turtle.goto(-125, -300)
+    turtle.pendown()
+    for i in range(8):
+        if ploca[i]==3 or ploca[i]==0:
+            turtle.fillcolor("black")
+        elif ploca[i]==5:
+            turtle.fillcolor("blue")
+        elif ploca[i]==7:
+            turtle.fillcolor("red")
+        turtle.begin_fill()
+        turtle.forward(125)
+        turtle.right(90)
+        turtle.forward(75)
+        turtle.right(90)
+        turtle.forward(125)
+        turtle.right(90)
+        turtle.forward(75)
+        turtle.right(90)
+        turtle.end_fill()
+        turtle.penup()
+        turtle.goto(-125, -200+(i*100))
+        turtle.pendown()
     turtle.penup()
+    turtle.goto(-125, -300)
     
-    
+ def turtleChangeBoard():
+    print("lorem ipsum dolor sit amet")   
 
 
 #Pojedinačna igra
@@ -185,7 +210,7 @@ def pojedinac():
 
 #Iznos
 def ponuda():
-    global nagrada
+    global nagrada, izborPonuda, ploca
     print("Imam jednu ponudu za tebe, {0}".format(ime))
     print("Imaš tri opcije! Možeš ostati sa svojih {0} eura, ili si možeš povećati na {1}, ili možda smanjiti na {2}".format(nagrada, nagrada*2, nagrada*0.75))
     print("Na tebi je da odabereš. Unesi ostajem, povećavam ili smanjujem")
@@ -193,19 +218,26 @@ def ponuda():
     izborPonuda=izborPonuda.casefold() 
     if(izborPonuda=="ostajem"):
         print("Ostali ste sa {0} eura! Pametno.".format(nagrada))
+        ploca=[7,3,5,3,3,3,3,0]
     elif(izborPonuda=="povećavam"):
         print("Povećali ste na {0} eura! Jako ste hrabri!".format(nagrada*2))
         nagrada=nagrada*2
+        ploca=[7,5,3,3,3,3,3,0]
     elif(izborPonuda=="smanjujem"):
         print("Smanjili ste na {0} eura! Jeste li sigurni u sebe?".format(nagrada*0.75))
         nagrada=nagrada*0.75
+        ploca=[7,3,3,5,3,3,3,0]
     else:
         print("Krivo ste upisali. Ponovno ću Vas pitati;")
         ponuda()
 
 #Lovac igra
 def loviti():
+    global ploca, ansL, ans2, nagrada
     ponuda()
+    initTurleBoard()
+    print("No, dosta o tome sada! Vidjeti ćemo možeš li me uopće pobijediti! Ha!")
+    
 #Ime i uvod
 print("Dobro došli u Mini Potjeru!")
 print("Mini Potjera je minijaturna, malo jednostavnija verzija Potjere na Vašem računalu")
