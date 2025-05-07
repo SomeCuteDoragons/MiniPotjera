@@ -190,7 +190,7 @@ def initTurleBoard():
     turtle.penup()
     turtle.goto(-125, -300)
     
- def turtleChangeBoard():
+def turtleChangeBoard():
     print("lorem ipsum dolor sit amet")   
 
 
