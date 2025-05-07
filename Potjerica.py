@@ -11,7 +11,7 @@ nagrada=100 #bilo bi glupo da je 0
 izborPonuda=0 #izbor za ponudu
 board=turtle.Screen() #turtle prozor
 board.setup(width=400, height=900) #veličina prozora
-ploca=[3,3,3,3,3,3,3,0] #3 je prazno, 5 je igrač, 7 je lovac, 0 je nagrada
+ploca=[3,3,3,3,3,3,3,0] #3 je prazno, 5 je igrač, 7 je lovac, 0 je nagrada (samo za boju)
 pPit=0 #redni broj pitanja pre runde
 ans=0 #odgovori za prvu rundu
 bod=0 #bodovi za prvu rundu
@@ -266,3 +266,5 @@ pojedinac()
 print("\n\nSuper je prošla igra, ali vrijeme je za igru protiv lovca!")
 print("Moje ime je Laki Topalović i biti ću Vaš lovac za ovu rundu")
 loviti()
+
+input("Pritisnite enter za izlaz iz igre")
