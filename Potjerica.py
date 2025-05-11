@@ -17,7 +17,10 @@ ans=0 #odgovori za prvu rundu
 bod=0 #bodovi za prvu rundu
 ans2=0 #odgovori za drugu rundu
 ansL=0 #lovčevi odgovori
-kPoz=0 #pozicija kornjače
+kPozI=0 #pozicija kornjače igrača
+kPozL=0 #pozicija kornjače lovca
+lovEval=0 #evaluacija pitanja u drugoj rundi; 1 je kada su oboje krivo, 2 kada je igrač točan, 3 kada je lovac točan, 4 kada su oboje točni
+bChange=0 #promjena boje na ploči po igraču ili lovcu
 #nema bodova za drugu rundu jer ona tako ne radi
 
 #Turle da bude always on top
@@ -71,9 +74,10 @@ def upute():
     print("Ako ostanete pri originalnom iznostu, biti ćete 2 koraka ispred lovca\n")
     print("U drugome dijelu igre ćete igrati protiv lovca")
     print("Bit će Vam prikazano Vaše mjesto i mjesto lovca iza Vas, te zadnje mjesto sa nagradom")
-    print("Svakim točnim odgovorom Vi ili lovac ide za jedno mjesto unaprijed prema nagradi (nagrada je nakon zadnjeg polja)\n")
+    print("Svakim točnim odgovorom Vi ili lovac ide za jedno mjesto unaprijed prema nagradi\n")
     print("Ako Vas lovac uhvati, izgubili ste igru!")
     print("Ako dođete do nagrade prije neg što Vas uhvati, pobijedili ste!")
+    print("Ako nekako nitko ne dođe do nagrade nakon 20 pitanja, nitko ne pobjeđuje!\n")
     #Razlike od originala: ploča izgleda drukčije ja msm nagrada su totalno drukčije, lovac je random, nema treće runde, prva runda nije na time limitu i sve to
 
 #Pitanja za prvu rundu
@@ -161,19 +165,8 @@ def prvaRunda():
         case _:
             print("case default error, kako li se to uopće dogodilo?")
 
-
-#Turtle ploča definirana po originalnoj ponudi
-def initTurleBoard():
-    global ploca
-    turtle.goto(-125, -300)
-    turtle.pendown()
-    for i in range(8):
-        if ploca[i]==3 or ploca[i]==0:
-            turtle.fillcolor("black")
-        elif ploca[i]==5:
-            turtle.fillcolor("blue")
-        elif ploca[i]==7:
-            turtle.fillcolor("red")
+def turtleInitKvadrat(): #za initTurleBoard
+        turtle.pendown()
         turtle.begin_fill()
         turtle.forward(125)
         turtle.right(90)
@@ -187,11 +180,117 @@ def initTurleBoard():
         turtle.penup()
         turtle.goto(-125, -200+(i*100))
         turtle.pendown()
+
+def turtleChangeKvadrat(): #za TurtleChangeState
+        turtle.pendown()
+        turtle.begin_fill()
+        turtle.forward(125)
+        turtle.right(90)
+        turtle.forward(75)
+        turtle.right(90)
+        turtle.forward(125)
+        turtle.right(90)
+        turtle.forward(75)
+        turtle.right(90)
+        turtle.end_fill()
+        turtle.penup()
+
+#Turtle ploča definirana po originalnoj ponudi
+def initTurleBoard():
+    global ploca
+    turtle.goto(-125, -300)
+    turtle.pendown()
+    for i in range(8):
+        if ploca[i]==3 or ploca[i]==0:
+            turtle.fillcolor("black")
+        elif ploca[i]==5:
+            turtle.fillcolor("blue")
+        elif ploca[i]==7:
+            turtle.fillcolor("red")
+        turtleInitKvadrat()
     turtle.penup()
     turtle.goto(-125, -300)
+
+def turtleChangeState(): #mijenja boju na ploči
+    global ploca, kPozI, kPozL, lovEval, bChange
+    match lovEval:
+        case 1:
+            pass
+        case 2:
+            turtle.fillcolor("blue")
+            turtleChangeKvadrat()
+        case 3:
+            turtle.fillcolor("red")
+            turtleChangeKvadrat()
+        case 4:
+            if bChange==1:
+                turtle.fillcolor("blue")
+                turtleChangeKvadrat()
+            elif bChange==2:
+                turtle.fillcolor("red")
+                turtleChangeKvadrat()
+            else:
+                print("huh")
+
+
     
-def turtleChangeBoard():
-    print("lorem ipsum dolor sit amet")   
+
+
+def turtleMoveBoard(): #samo za pomak po ploči
+    global ploca, kPozI, kPozL
+    turtle.penup()
+    kPozI=ploca.index(5) #mijenja stanje na ploči prema igraču
+    bChange=1
+    match kPozI:
+        case 0:
+            turtle.goto(-125, -300)
+            turtleChangeState()
+        case 1:
+            turtle.goto(-125, -200)
+            turtleChangeState()
+        case 2:
+            turtle.goto(-125, -100)
+            turtleChangeState()
+        case 3:
+            turtle.goto(-125, 0)
+            turtleChangeState()
+        case 4:
+            turtle.goto(-125, 100)
+            turtleChangeState()
+        case 5:
+            turtle.goto(-125, 200)
+            turtleChangeState()
+        case 6:
+            turtle.goto(-125, 300)
+            turtleChangeState()
+        case _:
+            print("case default error, kako li se to uopće dogodilo?")
+    kPozL=ploca.index(7) #mijenja stanje na ploči prema lovcu
+    bChange=2
+    match kPozL:
+        case 0:
+            turtle.goto(-125, -300)
+            turtleChangeState()
+        case 1:
+            turtle.goto(-125, -200)
+            turtleChangeState()
+        case 2:
+            turtle.goto(-125, -100)
+            turtleChangeState()
+        case 3:
+            turtle.goto(-125, 0)
+            turtleChangeState()
+        case 4:
+            turtle.goto(-125, 100)
+            turtleChangeState()
+        case 5:
+            turtle.goto(-125, 200)
+            turtleChangeState()
+        case 6:
+            turtle.goto(-125, 300)
+            turtleChangeState()
+        case _:
+            print("case default error, kako li se to uopće dogodilo?")
 
 
 #Pojedinačna igra
@@ -267,4 +366,4 @@ print("\n\nSuper je prošla igra, ali vrijeme je za igru protiv lovca!")
 print("Moje ime je Laki Topalović i biti ću Vaš lovac za ovu rundu")
 loviti()
 
-input("Pritisnite enter za izlaz iz igre")
+input("\n\n\nPritisnite enter za izlaz iz igre\n")
