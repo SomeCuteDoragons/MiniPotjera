@@ -20,9 +20,11 @@ ans2=0 #odgovori za drugu rundu
 ansL=0 #lovčevi odgovori
 kPozI=0 #pozicija kornjače igrača
 kPozL=0 #pozicija kornjače lovca
+odgZaEval=0 #odgovor za lovEval. Vidjeti ćeš u funkciji
 lovEval=0 #evaluacija pitanja u drugoj rundi; 1 je kada su oboje krivo, 2 kada je igrač točan, 3 kada je lovac točan, 4 kada su oboje točni
 bChange=0 #promjena boje na ploči po igraču ili lovcu
 rezultat=0 #rezultat nakon druge runde, 1 lovac, 2 igrač, 0 nitko
+
 #nema bodova za drugu rundu jer ona tako ne radi
 
 #Turle da bude always on top
@@ -332,7 +334,35 @@ def ponuda():
 
 #E OVO JE DRUGA RUNDA UGH
 def drugaRunda():
-    print("lorem ipsum")
+    global lPit, ans2, ansL, lovEval, kPozI, kPozL, ploca, rezultat #fakat ne znam što sve staviti u global iz prve dok ne počnem pisati funkciju pa nek sve ide (ponovno upućeno)
+    match lPit: #staviti ću prava pitanja iz potjere možda hhhhhhhhhhhhhh ako budu pitanja iz potjere onda će biti pitanja iz potjere 10. Svibnja 2025.
+        case 0:
+            print("Koja je od navedenih pjesama pobjednica Dore nagrađena i Porinom za pjesmu godine?")
+            print("A) Mama ŠČ!")
+            print("B) Marija Magdalena")
+            print("C) Ostani")
+            ans2=input("Unesite A, B ili C: ")
+            ans2 = ans2.casefold()
+            if(ans2=="a" or ans2=="a)"):
+                odgZaEval=1
+            else:
+                odgZaEval=2
+            if(ansL=="a" or ansL=="a)"):
+                if odgZaEval==1:
+                    lovEval=4
+                else:
+                    lovEval=3
+            else:
+                if odgZaEval==1:
+                    lovEval=2
+                else:
+                    lovEval=1
+
+                
+
+
+
+    
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
@@ -340,6 +370,7 @@ def drugaRundaKostur(): #a ja misl ovo pianja a nije
     print("Započinjemo sa prvim pitanjem.")
     for i in range(20):
         print("\nPitanje {0} od {1}\n".format(i+1,20))
+        ansL=random.choice("abc") #lovac nasumično odgovara, nadam se da random radi sa char
         drugaRunda()
         lPit+=1
         match lovEval:
