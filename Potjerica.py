@@ -12,7 +12,8 @@ izborPonuda=0 #izbor za ponudu
 board=turtle.Screen() #turtle prozor
 board.setup(width=400, height=900) #veličina prozora
 ploca=[3,3,3,3,3,3,3,0] #3 je prazno, 5 je igrač, 7 je lovac, 0 je nagrada (samo za boju)
-pPit=0 #redni broj pitanja pre runde
+pPit=0 #redni broj pitanja prve runde
+lPit=0 #redni broj pitanja druge runde
 ans=0 #odgovori za prvu rundu
 bod=0 #bodovi za prvu rundu
 ans2=0 #odgovori za drugu rundu
@@ -21,6 +22,7 @@ kPozI=0 #pozicija kornjače igrača
 kPozL=0 #pozicija kornjače lovca
 lovEval=0 #evaluacija pitanja u drugoj rundi; 1 je kada su oboje krivo, 2 kada je igrač točan, 3 kada je lovac točan, 4 kada su oboje točni
 bChange=0 #promjena boje na ploči po igraču ili lovcu
+rezultat=0 #rezultat nakon druge runde, 1 lovac, 2 igrač, 0 nitko
 #nema bodova za drugu rundu jer ona tako ne radi
 
 #Turle da bude always on top
@@ -328,12 +330,66 @@ def ponuda():
         print("Krivo ste upisali. Ponovno ću Vas pitati;")
         ponuda()
 
+#E OVO JE DRUGA RUNDA UGH
+def drugaRunda():
+    print("lorem ipsum")
+
+#napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
+def drugaRundaKostur(): #a ja misl ovo pianja a nije
+    global lPit, ans2, ansL, lovEval, kPozI, kPozL, ploca, rezultat #fakat ne znam što sve staviti u global iz prve dok ne počnem pisati funkciju pa nek sve ide
+    print("Započinjemo sa prvim pitanjem.")
+    for i in range(20):
+        print("\nPitanje {0} od {1}\n".format(i+1,20))
+        drugaRunda()
+        lPit+=1
+        match lovEval:
+            case 1:
+                print("Oboje ste krivo odgovorili.")
+            case 2:
+                print("Točno ste odgovorili.")
+                kPozI = ploca.index(5)
+                ploca[kPozI+1]=5
+                ploca[kPozI]=3
+                turtleMoveBoard()
+            case 3:
+                print("Lovac je točno odgovorio, a Vi niste!")
+                if(ploca.index(7)==(ploca.index(5)-1)):
+                    rezultat=1
+                else:
+                    kPozL = ploca.index(7)
+                    ploca[kPozL+1]=7
+                    ploca[kPozL]=3
+                    turtleMoveBoard()
+            case 4:
+                print("Oboje ste točno odgovorili!")
+                kPozI = ploca.index(5)
+                ploca[kPozI+1]=5
+                ploca[kPozI]=3
+                turtleMoveBoard()
+                kPozL = ploca.index(7)
+                ploca[kPozL+1]=7
+                ploca[kPozL]=3
+                turtleMoveBoard()
+            case _:
+                print("case default error, kako li se to uopće dogodilo?")
+            
+        if rezultat==1:
+            break
+        if ploca.index(5)==7:
+            rezultat=2
+            break
+
+
+
 #Lovac igra
 def loviti():
     global ploca, ansL, ans2, nagrada
     ponuda()
     initTurleBoard()
     print("No, dosta o tome sada! Vidjeti ćemo možeš li me uopće pobijediti! Ha!")
+    drugaRundaKostur()
+    
+
     
 #Ime i uvod
 print("Dobro došli u Mini Potjeru!")
@@ -359,9 +415,24 @@ print("U početku ću Vas ja pitati nekoliko pitanja da odredimo iznos Vaše nag
 print("Započeti ćemo sa 100 eura\n")
 pojedinac()
     
-#Lovac igra uvod
+#Lovac igra 
 print("\n\nSuper je prošla igra, ali vrijeme je za igru protiv lovca!")
 print("Moje ime je Laki Topalović i biti ću Vaš lovac za ovu rundu")
 loviti()
+#provjera rezultata druge runde
+if rezultat==1:
+        print("Ah, uhvatio sam Vas! Tako ste izgubili igru! Baš šteta, haha!")
+        print("Ništa od nagrade! Želim Vam sreće sljedeći put! Sreće da ponovno izgubite! >:)")
+        print("No, možete me ispričati, idem se zabaviti sa svojih {0} eura! haha!".format(nagrada))
+elif rezultat==2:
+        print("Kako je to moguće! Ja sam mislio da sam najpametniji ovdje!")
+        print("Teško mi je to povjerovati, pogotovo prihvatiti, ali ste pobijedili sasvim zasluženo...")
+        print("Samo uzmi svojih {0} eura i bježi od mene!".format(nagrada))
+elif rezultat==0:
+        print("Nitko nije pobijedio! Niti igrač, niti lovac!")
+        print("Pa kakvi ste Vi to igrač, a da o ''pametnom'' lovcu da ne pričam!")
+        print("Uzeti ću si ja svojih {0} eura, ionako ih niste zaslužili!".format(nagrada))
+else:
+        print("huh")
 
 input("\n\n\nPritisnite enter za izlaz iz igre\n")
