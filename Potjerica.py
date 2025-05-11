@@ -165,21 +165,21 @@ def prvaRunda():
         case _:
             print("case default error, kako li se to uopće dogodilo?")
 
-def turtleInitKvadrat(): #za initTurleBoard
-        turtle.pendown()
-        turtle.begin_fill()
-        turtle.forward(125)
-        turtle.right(90)
-        turtle.forward(75)
-        turtle.right(90)
-        turtle.forward(125)
-        turtle.right(90)
-        turtle.forward(75)
-        turtle.right(90)
-        turtle.end_fill()
-        turtle.penup()
-        turtle.goto(-125, -200+(i*100))
-        turtle.pendown()
+def turtleInitKvadrat(x, y):
+    turtle.penup()
+    turtle.goto(x, y)
+    turtle.pendown()
+    turtle.begin_fill()
+    turtle.forward(125)
+    turtle.right(90)
+    turtle.forward(75)
+    turtle.right(90)
+    turtle.forward(125)
+    turtle.right(90)
+    turtle.forward(75)
+    turtle.right(90)
+    turtle.end_fill()
+    turtle.penup()
 
 def turtleChangeKvadrat(): #za TurtleChangeState
         turtle.pendown()
@@ -198,18 +198,16 @@ def turtleChangeKvadrat(): #za TurtleChangeState
 #Turtle ploča definirana po originalnoj ponudi
 def initTurleBoard():
     global ploca
-    turtle.goto(-125, -300)
-    turtle.pendown()
-    for i in range(8):
+    for i in range(len(ploca)):
         if ploca[i]==3 or ploca[i]==0:
             turtle.fillcolor("black")
         elif ploca[i]==5:
             turtle.fillcolor("blue")
         elif ploca[i]==7:
             turtle.fillcolor("red")
-        turtleInitKvadrat()
+        turtleInitKvadrat(-125, -300+(i*100)) #malo urednije ipak lolololok
     turtle.penup()
-    turtle.goto(-125, -300)
+
 
 def turtleChangeState(): #mijenja boju na ploči
     global ploca, kPozI, kPozL, lovEval, bChange
