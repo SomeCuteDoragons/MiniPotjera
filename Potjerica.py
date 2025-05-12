@@ -344,25 +344,68 @@ def drugaRunda():
             ans2=input("Unesite A, B ili C: ")
             ans2 = ans2.casefold()
             if(ans2=="a" or ans2=="a)"):
-                odgZaEval=1
-            else:
                 odgZaEval=2
+            else:
+                odgZaEval=1
             if(ansL=="a" or ansL=="a)"):
                 if odgZaEval==1:
-                    lovEval=4
-                else:
                     lovEval=3
+                else:
+                    lovEval=4
             else:
                 if odgZaEval==1:
-                    lovEval=2
-                else:
                     lovEval=1
+                else:
+                    lovEval=2
+        #da me ubije ova logika majke mi, samo zapamti od=2 else od=1 -> if od=1 lov=3 else lov=4 -> else if od=1 lov=1 else lov=2            
+        case 1:
+            print("Koliko su elegija u knjizi 'Corpus Tibullanium' zapravo Tibulove?")
+            print("A) 32")
+            print("B) 20")
+            print("C) 16")
+            ans2=input("Unesite A, B ili C: ")
+            ans2 = ans2.casefold()
+            if(ans2=="c" or ans2=="c)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="c" or ansL=="c)"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 2:
+            print("Na kojem poluotoku u Hrvatskoj se nalazi dolina Dingač, poznata po vinogradima?")
+            print("A) Pelješac")
+            print("B) Istra")
+            print("C) Klek")
+            ans2=input("Unesite A, B ili C: ")
+            ans2 = ans2.casefold()
+            if(ans2=="a" or ans2=="a)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="a" or ansL=="a)"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 3:
+
+            
+        
 
                 
-
-
-
-    
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
@@ -460,7 +503,7 @@ elif rezultat==2:
         print("Teško mi je to povjerovati, pogotovo prihvatiti, ali ste pobijedili sasvim zasluženo...")
         print("Samo uzmi svojih {0} eura i bježi od mene!".format(nagrada))
 elif rezultat==0:
-        print("Nitko nije pobijedio! Niti igrač, niti lovac!")
+        print("Stvarno? Nakon 20 pitanja da nitko nije pobijedio? Niti igrač, niti lovac!")
         print("Pa kakvi ste Vi to igrač, a da o ''pametnom'' lovcu da ne pričam!")
         print("Uzeti ću si ja svojih {0} eura, ionako ih niste zaslužili!".format(nagrada))
 else:
