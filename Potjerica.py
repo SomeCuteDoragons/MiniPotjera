@@ -347,7 +347,7 @@ def drugaRunda():
                 odgZaEval=2
             else:
                 odgZaEval=1
-            if(ansL=="a" or ansL=="a)"):
+            if(ansL=="a"):
                 if odgZaEval==1:
                     lovEval=3
                 else:
@@ -369,7 +369,7 @@ def drugaRunda():
                 odgZaEval=2
             else:
                 odgZaEval=1
-            if(ansL=="c" or ansL=="c)"):
+            if(ansL=="c"):
                 if odgZaEval==1:
                     lovEval=3
                 else:
@@ -380,7 +380,7 @@ def drugaRunda():
                 else:
                     lovEval=2
         case 2:
-            print("Na kojem poluotoku u Hrvatskoj se nalazi dolina Dingač, poznata po vinogradima?")
+            print("Na kojem poluotoku u Hrvatskoj se nalazi dolina Dingač, poznata po svojim vinogradima?")
             print("A) Pelješac")
             print("B) Istra")
             print("C) Klek")
@@ -390,7 +390,7 @@ def drugaRunda():
                 odgZaEval=2
             else:
                 odgZaEval=1
-            if(ansL=="a" or ansL=="a)"):
+            if(ansL=="a"):
                 if odgZaEval==1:
                     lovEval=3
                 else:
@@ -401,11 +401,28 @@ def drugaRunda():
                 else:
                     lovEval=2
         case 3:
+            print("Po čemu su bili nazvani raketoplani iz NASA-ina projekta Space Shuttle?")
+            print("A) Po brodovima")
+            print("B) Po generalima")
+            print("C) Po saveznim državama")
+            ans2=input("Unesite A, B ili C: ")
+            ans2 = ans2.casefold()
+            if(ans2=="a" or ans2=="a)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="a"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
 
-            
-        
-
-                
+              
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
