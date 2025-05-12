@@ -235,64 +235,29 @@ def turtleChangeState(): #mijenja boju na ploči
                 print("huh")
 
 
+def turtleMoveBoard(): #ovo je ipak bolji način?????? JOJ ŠTO JE SPORO
+    global ploca, kPozI, kPozL, bChange
     
-
-
-def turtleMoveBoard(): #samo za pomak po ploči
-    global ploca, kPozI, kPozL
+    # Osigura da se prijašnje mjesto vrati na crno
+    for i in range(len(ploca)):
+        turtle.penup()
+        turtle.goto(-125, -300+(i*100))
+        turtle.fillcolor("black")
+        turtleChangeKvadrat()
+    
+    # Igrač
+    kPozI = ploca.index(5)
     turtle.penup()
-    kPozI=ploca.index(5) #mijenja stanje na ploči prema igraču
-    bChange=1
-    match kPozI:
-        case 0:
-            turtle.goto(-125, -300)
-            turtleChangeState()
-        case 1:
-            turtle.goto(-125, -200)
-            turtleChangeState()
-        case 2:
-            turtle.goto(-125, -100)
-            turtleChangeState()
-        case 3:
-            turtle.goto(-125, 0)
-            turtleChangeState()
-        case 4:
-            turtle.goto(-125, 100)
-            turtleChangeState()
-        case 5:
-            turtle.goto(-125, 200)
-            turtleChangeState()
-        case 6:
-            turtle.goto(-125, 300)
-            turtleChangeState()
-        case _:
-            print("case default error, kako li se to uopće dogodilo?")
-    kPozL=ploca.index(7) #mijenja stanje na ploči prema lovcu
-    bChange=2
-    match kPozL:
-        case 0:
-            turtle.goto(-125, -300)
-            turtleChangeState()
-        case 1:
-            turtle.goto(-125, -200)
-            turtleChangeState()
-        case 2:
-            turtle.goto(-125, -100)
-            turtleChangeState()
-        case 3:
-            turtle.goto(-125, 0)
-            turtleChangeState()
-        case 4:
-            turtle.goto(-125, 100)
-            turtleChangeState()
-        case 5:
-            turtle.goto(-125, 200)
-            turtleChangeState()
-        case 6:
-            turtle.goto(-125, 300)
-            turtleChangeState()
-        case _:
-            print("case default error, kako li se to uopće dogodilo?")
+    turtle.goto(-125, -300+(kPozI*100))
+    turtle.fillcolor("blue")
+    turtleChangeKvadrat()
+    
+    # Lovac
+    kPozL = ploca.index(7)
+    turtle.penup()
+    turtle.goto(-125, -300+(kPozL*100))
+    turtle.fillcolor("red")
+    turtleChangeKvadrat()
 
 
 #Pojedinačna igra
