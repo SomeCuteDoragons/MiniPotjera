@@ -459,7 +459,7 @@ def drugaRunda():
                     lovEval=2
         case 7:
             print("Osnovni sastojci provalonskog namaza tapenade su: Kapare, inćuni i...")
-            tocOdg="a"
+            tocOdg="a" #tek mi je tu palo napamet. Zašto ne u prvoj rundi? Nije mi palo napamet i bilo je manje pitanja.
             print("A) Masline")
             print("B) Paradajz")
             print("C) Orasi")
@@ -481,7 +481,26 @@ def drugaRunda():
                     lovEval=2
         case 8:
             print("Koji je od ovih romana najprije objavljen?")
-            
+            tocOdg="b"
+            print("A) Zločin i kazna")
+            print("B) Ponos i predrasuda")
+            print("C) Rat i Mir")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="b" or ans2=="b)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="b"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
