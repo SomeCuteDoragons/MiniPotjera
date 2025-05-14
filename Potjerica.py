@@ -501,6 +501,28 @@ def drugaRunda():
                     lovEval=1
                 else:
                     lovEval=2
+        case 9: #do ovih pitanja i nadalje se dolaze samo ako je lovac glup i igrač ništa ne zna :)
+            print("Vlada koje je države za 2027. raspisala referendum o pristupanju u Europsku Uniju?")
+            tocOdg="c"
+            print("A) Švicarske")
+            print("B) Norveške")
+            print("C) Islanda")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="c" or ans2=="c)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="c"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
