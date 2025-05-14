@@ -24,6 +24,7 @@ odgZaEval=0 #odgovor za lovEval. Vidjeti ćeš u funkciji
 lovEval=0 #evaluacija pitanja u drugoj rundi; 1 je kada su oboje krivo, 2 kada je igrač točan, 3 kada je lovac točan, 4 kada su oboje točni
 bChange=0 #promjena boje na ploči po igraču ili lovcu
 rezultat=0 #rezultat nakon druge runde, 1 lovac, 2 igrač, 0 nitko
+tocOdg=0 #Točan odgovor u drugoj rundi
 
 #nema bodova za drugu rundu jer ona tako ne radi
 
@@ -299,10 +300,11 @@ def ponuda():
 
 #E OVO JE DRUGA RUNDA UGH
 def drugaRunda():
-    global lPit, ans2, ansL, lovEval, kPozI, kPozL, ploca, rezultat #fakat ne znam što sve staviti u global iz prve dok ne počnem pisati funkciju pa nek sve ide (ponovno upućeno)
-    match lPit: #staviti ću prava pitanja iz potjere možda hhhhhhhhhhhhhh ako budu pitanja iz potjere onda će biti pitanja iz potjere 10. Svibnja 2025.
+    global lPit, ans2, ansL, lovEval, kPozI, kPozL, ploca, rezultat, tocOdg #fakat ne znam što sve staviti u global iz prve dok ne počnem pisati funkciju pa nek sve ide (ponovno upućeno)
+    match lPit: #staviti ću prava pitanja iz potjere možda hhhhhhhhhhhhhh ako budu pitanja iz potjere onda će biti pitanja iz potjere 10. Svibnja 2025. ili koliko daleko mi hrti dopusti ići
         case 0:
             print("Koja je od navedenih pjesama pobjednica Dore nagrađena i Porinom za pjesmu godine?")
+            tocOdg="a"
             print("A) Mama ŠČ!")
             print("B) Marija Magdalena")
             print("C) Ostani")
@@ -325,6 +327,7 @@ def drugaRunda():
         #da me ubije ova logika majke mi, samo zapamti od=2 else od=1 -> if od=1 lov=3 else lov=4 -> else if od=1 lov=1 else lov=2            
         case 1:
             print("Koliko su elegija u knjizi 'Corpus Tibullanium' zapravo Tibulove?")
+            tocOdg="c"
             print("A) 32")
             print("B) 20")
             print("C) 16")
@@ -346,6 +349,7 @@ def drugaRunda():
                     lovEval=2
         case 2:
             print("Na kojem poluotoku u Hrvatskoj se nalazi dolina Dingač, poznata po svojim vinogradima?")
+            tocOdg="a"
             print("A) Pelješac")
             print("B) Istra")
             print("C) Klek")
@@ -367,6 +371,7 @@ def drugaRunda():
                     lovEval=2
         case 3:
             print("Po čemu su bili nazvani raketoplani iz NASA-ina projekta Space Shuttle?")
+            tocOdg="a"
             print("A) Po brodovima")
             print("B) Po generalima")
             print("C) Po saveznim državama")
@@ -386,17 +391,105 @@ def drugaRunda():
                     lovEval=1
                 else:
                     lovEval=2
-
-              
+        case 4:
+            print("Koje je ime pape koji je rezignirao 2013. godine?")
+            tocOdg="c"
+            print("A) Ivan Pavao II.")
+            print("B) Inocent III.")
+            print("C) Benedikt XVI.")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="c" or ans2=="c)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="c"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 5:
+            print("Kojem je umjetničkom stilu ime dao talijanski slikar Giorgio Vasari koji ga je smatrao barbarskim?")
+            tocOdg="c"
+            print("A) Baroku")
+            print("B) Romanici")
+            print("C) Gotici")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="c" or ans2=="c)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="c"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 6:
+            print("Dereze najbolje služe za hodanje po kojoj površini?")
+            tocOdg="b"
+            print("A) Po pijesku")
+            print("B) Po ledu")
+            print("C) Po blatu")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="b" or ans2=="b)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="b"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 7:
+            print("Osnovni sastojci provalonskog namaza tapenade su: Kapare, inćuni i...")
+            tocOdg="a"
+            print("A) Masline")
+            print("B) Inćuni")
+            print("C) Orasi")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="a" or ans2=="a)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="a"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
-    global lPit, ans2, ansL, lovEval, kPozI, kPozL, ploca, rezultat #fakat ne znam što sve staviti u global iz prve dok ne počnem pisati funkciju pa nek sve ide
+    global lPit, ans2, ansL, lovEval, kPozI, kPozL, ploca, rezultat, tocOdg #fakat ne znam što sve staviti u global iz prve dok ne počnem pisati funkciju pa nek sve ide
     print("Započinjemo sa prvim pitanjem.")
     for i in range(20):
         print("\nPitanje {0} od {1}\n".format(i+1,20))
         ansL=random.choice("abc") #lovac nasumično odgovara, nadam se da random radi sa char
         drugaRunda()
+        print("Lovac je odgovorio:",ansL)
+        print("Točan odgovor je:",tocOdg)
         lPit+=1
         match lovEval:
             case 1:
