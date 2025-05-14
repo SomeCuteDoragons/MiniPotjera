@@ -461,7 +461,7 @@ def drugaRunda():
             print("Osnovni sastojci provalonskog namaza tapenade su: Kapare, inćuni i...")
             tocOdg="a"
             print("A) Masline")
-            print("B) Inćuni")
+            print("B) Paradajz")
             print("C) Orasi")
             ans2=input("Unesite A, B ili C: ")
             ans2=ans2.casefold()
@@ -479,6 +479,9 @@ def drugaRunda():
                     lovEval=1
                 else:
                     lovEval=2
+        case 8:
+            print("Koji je od ovih romana najprije objavljen?")
+            
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
