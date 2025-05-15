@@ -501,7 +501,7 @@ def drugaRunda():
                     lovEval=1
                 else:
                     lovEval=2
-        case 9: #do ovih pitanja i nadalje se dolaze samo ako je lovac glup i igrač ništa ne zna :)
+        case 9: #do ovih pitanja i nadalje se dolaze samo ako je lovac glup i igrač ništa ne zna :) (bez uvrede igraču)
             print("Vlada koje je države za 2027. raspisala referendum o pristupanju u Europsku Uniju?")
             tocOdg="c"
             print("A) Švicarske")
@@ -523,6 +523,8 @@ def drugaRunda():
                     lovEval=1
                 else:
                     lovEval=2
+        case 10:
+            print("lorem ipsum")
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
