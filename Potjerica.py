@@ -613,6 +613,51 @@ def drugaRunda():
                 else:
                     lovEval=2
         case 14:
+            print("Što je to šajka?")
+            tocOdg="c"
+            print("A) Drveno koplje")
+            print("B) Moćvarna ptica")
+            print("C) Riječni brod")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="c" or ans2=="c)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="c"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 15:
+            print("Kojom se kraticom označava trenutak tvrtkine prve javne ponude dionica na prodaju?")
+            tocOdg="b"
+            print("A) ATH")
+            print("B) IPO")
+            print("C) HODL")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="b" or ans2=="b)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="b"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+            print("Za one znatiženje, IPO znači Initial Public Offering")
+        case 16:
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
