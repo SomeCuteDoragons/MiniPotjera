@@ -302,7 +302,7 @@ def ponuda():
 #E OVO JE DRUGA RUNDA UGH
 def drugaRunda():
     global lPit, ans2, ansL, lovEval, kPozI, kPozL, ploca, rezultat, tocOdg #fakat ne znam što sve staviti u global iz prve dok ne počnem pisati funkciju pa nek sve ide (ponovno upućeno)
-    match lPit: #staviti ću prava pitanja iz potjere možda hhhhhhhhhhhhhh ako budu pitanja iz potjere onda će biti pitanja iz potjere 10. Svibnja 2025. ili koliko daleko mi hrti dopusti ići
+    match lPit: #staviti ću prava pitanja iz potjere možda hhhhhhhhhhhhhh ako budu pitanja iz potjere onda će biti pitanja iz potjere 10., 12. i 17. Svibnja 2025. ili koliko daleko mi hrti dopusti ići
         case 0:
             print("Koja je od navedenih pjesama pobjednica Dore nagrađena i Porinom za pjesmu godine?")
             tocOdg="a"
@@ -524,8 +524,74 @@ def drugaRunda():
                     lovEval=1
                 else:
                     lovEval=2
-        case 10:
-            print("lorem ipsum")
+        case 10: #HRTi neda da idem daleko, ovo je već treći put kad su mi makli prvo 10.5. pa 12.5 a sad moram 17.5.
+            print("Koliko je trajao mandat Angele Merkel na mjestu njemačke kancelarke?") #Obećajem da su ovo sve prava pitanja iz Potjere, stvarno ne lažem. Ok, osim one sa append na Pythonu :)
+            tocOdg="b"
+            print("A) 11 godina i 11 dana")
+            print("B) 16 godina i 16 dana")
+            print("C) 7 godina i 7 dana")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="b" or ans2=="b)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="b"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 11:
+            print('"Jednakost" 2+2=5 našla se u nazivu ovogodišnjeg dokumentarca o kojem književniku?')
+            tocOdg="c"
+            print("A) O Hemingwayu")
+            print("B) O Marquesu")
+            print("C) O Orwelu")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="c" or ans2=="c)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="c"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 12:
+            print("Jidiš, jezik ašenaskih Židova se razvio u srednjem vijeku na području srednjeg toka rijeke...")
+            tocOdg="a"
+            print("A) Rajne")
+            print("B) Jordana")
+            print("C) Dnjepra")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="a" or ans2=="a)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="a"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 13:
+            
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
