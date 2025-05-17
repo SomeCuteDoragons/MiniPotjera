@@ -680,6 +680,52 @@ def drugaRunda():
                 else:
                     lovEval=2
         case 17:
+            print("Kojem je književniku, nakon što mu se avion srušio u Sahari, život spasio jedan beduin?")
+            tocOdg="b"
+            print("A) Camusu")
+            print("B) Saint-Exuperyju")
+            print("C) Sartreu")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="b" or ans2=="b)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="b"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 18:
+            print("Rafaelov portret kojega pjesnika susrećemo na talijanskim kovanicama od 2 eura?")
+            tocOdg="b"
+            print("A) Petrarce")
+            print("B) Dantea")
+            print("C) Ariosta")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="b" or ans2=="b)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="b"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 19:
+            print("Zadnje pitanje, ako oboje ne odgovorite točno, ispadate!")
+            print("")
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
