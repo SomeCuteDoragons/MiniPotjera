@@ -658,6 +658,28 @@ def drugaRunda():
                     lovEval=2
             print("Za one znatiženje, IPO znači Initial Public Offering")
         case 16:
+            print("U ovom su Vam pitanju servirani špageti Aglio e Olio. Olio je ulje, a što je Aglio?")
+            tocOdg="a"
+            print("A) Češnjak")
+            print("B) Peršin")
+            print("C) Papar")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="a" or ans2=="a)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="a"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 17:
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
