@@ -725,7 +725,29 @@ def drugaRunda():
                     lovEval=2
         case 19:
             print("Zadnje pitanje, ako oboje ne odgovorite točno, ispadate!")
-            print("")
+            print('Koji se od sljedećih predsjednika SAD-a pojavio u TV emisiji "Laugh-in"?') #iznenadni gost iz "Tko Želi Biti Milijunaš" :D
+            tocOdg="a"
+            print("A) Richard Nixon")
+            print("B) Lyndon Johnson")
+            print("C) Gerald Ford")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="a" or ans2=="a)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="a"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case _:
+            print("case default error, kako li se to uopće dogodilo?")
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
