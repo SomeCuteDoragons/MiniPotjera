@@ -1,5 +1,6 @@
 #Python 3.10 je izašao u 2021. godini. Ako nemaš već tu verziju instaliranu...
 #import -> zašto ne from module import? zato što ovako znam da je neka komponenta iz modula dok ju pišem
+#dobar dan 2.e da se zna da je ovo zapravo moj projekt
 import random
 import turtle
 
