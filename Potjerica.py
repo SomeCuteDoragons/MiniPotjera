@@ -591,7 +591,28 @@ def drugaRunda():
                 else:
                     lovEval=2
         case 13:
-            
+            print("Koja je NBA momčad dobila ime po seriji o Divljem zapadu s James Garnerom u glavnoj ulozi?")
+            tocOdg="a"
+            print("A) Dallas")
+            print("B) Denver")
+            print("C) Portland")
+            ans2=input("Unesite A, B ili C: ")
+            ans2=ans2.casefold()
+            if(ans2=="a" or ans2=="a)"):
+                odgZaEval=2
+            else:
+                odgZaEval=1
+            if(ansL=="a"):
+                if odgZaEval==1:
+                    lovEval=3
+                else:
+                    lovEval=4
+            else:
+                if odgZaEval==1:
+                    lovEval=1
+                else:
+                    lovEval=2
+        case 14:
 
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
