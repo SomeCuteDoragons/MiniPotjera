@@ -8,19 +8,25 @@ import turtle
 ime=0 #baš se pitam za što ovo služi
 pravilo=0 #da ne ispadne iz petlje bez ponavljanja pravila (nešto što mi se nije dalo implementirati u izboru ponude :3)
 izborPravi=0 #izbor za pravila (zvuči zastrašujuće bez konteksta)
+#---------------------------------------------------------------------------------------
 nagrada=100 #bilo bi glupo da je 0
 izborPonuda=0 #izbor za ponudu
 board=turtle.Screen() #turtle prozor
 board.setup(width=400, height=900) #veličina prozora
 ploca=[3,3,3,3,3,3,3,0] #3 je prazno, 5 je igrač, 7 je lovac, 0 je nagrada (samo za boju)
+#---------------------------------------------------------------------------------------
 pPit=0 #redni broj pitanja prve runde
 lPit=0 #redni broj pitanja druge runde
+#---------------------------------------------------------------------------------------
 ans=0 #odgovori za prvu rundu
 bod=0 #bodovi za prvu rundu
+#---------------------------------------------------------------------------------------
 ans2=0 #odgovori za drugu rundu
 ansL=0 #lovčevi odgovori
+#---------------------------------------------------------------------------------------
 kPozI=0 #pozicija kornjače igrača
 kPozL=0 #pozicija kornjače lovca
+#---------------------------------------------------------------------------------------
 odgZaEval=0 #odgovor za lovEval. Vidjeti ćeš u funkciji
 lovEval=0 #evaluacija pitanja u drugoj rundi; 1 je kada su oboje krivo, 2 kada je igrač točan, 3 kada je lovac točan, 4 kada su oboje točni
 bChange=0 #promjena boje na ploči po igraču ili lovcu
@@ -82,8 +88,8 @@ def upute():
     print("Bit će Vam prikazano Vaše mjesto i mjesto lovca iza Vas, te zadnje mjesto sa nagradom")
     print("Svakim točnim odgovorom Vi ili lovac ide za jedno mjesto unaprijed prema nagradi\n")
     print("Ako Vas lovac uhvati, izgubili ste igru!")
-    print("Ako dođete do nagrade prije neg što Vas uhvati, pobijedili ste!")
-    print("Ako nekako nitko ne dođe do nagrade nakon 20 pitanja, nitko ne pobjeđuje!\n")
+    print("Ako dođete do nagrade prije nego što Vas uhvati, pobijedili ste!")
+    print("Ako nekako nitko ne dođe do nagrade nakon 20 pitanja, nitko ne pobjeđuje!\n\n")
     #Razlike od originala: ploča izgleda drukčije ja msm nagrada su totalno drukčije, lovac je random, nema treće runde, prva runda nije na time limitu i sve to
 
 #Pitanja za prvu rundu
@@ -91,13 +97,13 @@ def prvaRunda():
     global bod
     match pPit:
         case 0:
-            print("Što radi append metoda u Pythonu?")
+            print("\n\nŠto radi append() metoda u Pythonu?")
             print("A) Dodaje element na kraj liste")
             print("B) Dodaje element na početak liste")
             print("C) Dodaje element na željeno mjesto u listi")
             ans=input("Unesite A, B ili C: ")
             ans = ans.casefold() 
-            if(ans=="a" or ans=="a)"):
+            if(ans=="a" or ans=="a)"): #Prva runda koristi drukčiju logiku od druge runde jer je jednostavnija i ima lufta za točan odgovor u logici
                 print("Točno!")
                 bod+=1
             else:
@@ -171,7 +177,7 @@ def prvaRunda():
         case _:
             print("case default error, kako li se to uopće dogodilo?")
 
-def turtleInitKvadrat(x, y):
+def turtleInitKvadrat(x, y): #Inicijalizira ploču na početku igre
     turtle.penup()
     turtle.goto(x, y)
     turtle.pendown()
@@ -187,7 +193,7 @@ def turtleInitKvadrat(x, y):
     turtle.end_fill()
     turtle.penup()
 
-def turtleChangeKvadrat(): #za TurtleChangeState
+def turtleChangeKvadrat(): #za TurtleChangeState samo crtanje
         turtle.pendown()
         turtle.begin_fill()
         turtle.forward(125)
@@ -201,7 +207,7 @@ def turtleChangeKvadrat(): #za TurtleChangeState
         turtle.end_fill()
         turtle.penup()
 
-#Turtle ploča definirana po originalnoj ponudi
+#Promjena boje na ploči za početak druge runde po izboru ponude
 def initTurleBoard():
     global ploca
     for i in range(len(ploca)):
@@ -211,12 +217,12 @@ def initTurleBoard():
             turtle.fillcolor("blue")
         elif ploca[i]==7:
             turtle.fillcolor("red")
-        turtleInitKvadrat(-125, -300+(i*100)) #malo urednije ipak lolololok
+        turtleInitKvadrat(-125, -300+(i*100)) #malo urednije ipak lolololol, prije je bilo preko switch-case
     turtle.penup()
 
 
 def turtleChangeState(): #mijenja boju na ploči
-    global ploca, kPozI, kPozL, lovEval, bChange
+    global ploca, lovEval, bChange
     match lovEval:
         case 1:
             pass
@@ -248,7 +254,7 @@ def turtleMoveBoard(): #ovo je ipak bolji način?????? JOJ ŠTO JE SPORO
         turtleChangeKvadrat()
     
     # Igrač
-    kPozI = ploca.index(5)
+    kPozI = ploca.index(5) #moglo se i bez stavljanja u varijablu ali python se ponekad zna zeznuti i dobro je za debugging
     turtle.penup()
     turtle.goto(-125, -300+(kPozI*100))
     turtle.fillcolor("blue")
@@ -264,35 +270,35 @@ def turtleMoveBoard(): #ovo je ipak bolji način?????? JOJ ŠTO JE SPORO
 
 #Pojedinačna igra
 def pojedinac():
-    print("Započinjemo sa prvim pitanjem!")
+    print("\n\nZapočinjemo sa prvim pitanjem!\n")
     global pPit, nagrada, bod
     for i in range(6):
         print("\nPitanje {0} od {1}\n".format(i+1,6))
         prvaRunda()
         pPit+=1
     if bod==0:
-        print("Vaša nagrada, ako uopće dođete do nje, je 100 eura!")
+        print("\nVaša nagrada, ako uopće dođete do nje, je 100 eura!")
     else:
         nagrada=100+(bod*150)
-        print("Bravo! Samo tako nastavite i dobit ćete {0} eura!".format(nagrada))
+        print("\nBravo! Samo tako nastavite i dobit ćete {0} eura!".format(nagrada))
 
 #Iznos
 def ponuda():
     global nagrada, izborPonuda, ploca
-    print("Imam jednu ponudu za tebe, {0}".format(ime))
+    print("\n\nImam jednu ponudu za tebe, {0}".format(ime))
     print("Imaš tri opcije! Možeš ostati sa svojih {0} eura, ili si možeš povećati na {1}, ili možda smanjiti na {2}".format(nagrada, nagrada*2, nagrada*0.75))
-    print("Na tebi je da odabereš. Unesi ostajem, povećavam ili smanjujem")
+    print("Na tebi je da odabereš. Unesi ostajem, povećavam ili smanjujem\n")
     izborPonuda=input()
     izborPonuda=izborPonuda.casefold() 
     if(izborPonuda=="ostajem"):
-        print("Ostali ste sa {0} eura! Pametno.".format(nagrada))
+        print("\nOstali ste sa {0} eura! Pametno.".format(nagrada))
         ploca=[7,3,5,3,3,3,3,0]
     elif(izborPonuda=="povećavam"):
-        print("Povećali ste na {0} eura! Jako ste hrabri!".format(nagrada*2))
+        print("\nPovećali ste na {0} eura! Jako ste hrabri!".format(nagrada*2))
         nagrada=nagrada*2
         ploca=[7,5,3,3,3,3,3,0]
     elif(izborPonuda=="smanjujem"):
-        print("Smanjili ste na {0} eura! Jeste li sigurni u sebe?".format(nagrada*0.75))
+        print("\nSmanjili ste na {0} eura! Jeste li sigurni u sebe?".format(nagrada*0.75))
         nagrada=nagrada*0.75
         ploca=[7,3,3,5,3,3,3,0]
     else:
@@ -301,7 +307,7 @@ def ponuda():
 
 #E OVO JE DRUGA RUNDA UGH
 def drugaRunda():
-    global lPit, ans2, ansL, lovEval, kPozI, kPozL, ploca, rezultat, tocOdg #fakat ne znam što sve staviti u global iz prve dok ne počnem pisati funkciju pa nek sve ide (ponovno upućeno)
+    global lPit, ans2, ansL, lovEval, ploca, rezultat, tocOdg #fakat ne znam što sve staviti u global iz prve dok ne počnem pisati funkciju pa nek sve ide (ponovno upućeno)
     match lPit: #staviti ću prava pitanja iz potjere možda hhhhhhhhhhhhhh ako budu pitanja iz potjere onda će biti pitanja iz potjere 10., 12. i 17. Svibnja 2025. ili koliko daleko mi hrti dopusti ići
         case 0:
             print("Koja je od navedenih pjesama pobjednica Dore nagrađena i Porinom za pjesmu godine?")
@@ -752,25 +758,25 @@ def drugaRunda():
 #napokon, pitanja sa lovcem nakon sto godina zabave sa kornjačom
 def drugaRundaKostur(): #a ja misl ovo pianja a nije
     global lPit, ans2, ansL, lovEval, kPozI, kPozL, ploca, rezultat, tocOdg #fakat ne znam što sve staviti u global iz prve dok ne počnem pisati funkciju pa nek sve ide
-    print("Započinjemo sa prvim pitanjem.")
+    print("\n\nZapočinjemo sa prvim pitanjem.")
     for i in range(20):
         print("\nPitanje {0} od {1}\n".format(i+1,20))
         ansL=random.choice("abc") #lovac nasumično odgovara, nadam se da random radi sa char
         drugaRunda()
-        print("Lovac je odgovorio:",ansL)
+        print("\nLovac je odgovorio:",ansL)
         print("Točan odgovor je:",tocOdg)
         lPit+=1
         match lovEval:
             case 1:
-                print("Oboje ste krivo odgovorili.")
+                print("Oboje ste krivo odgovorili.\n")
             case 2:
-                print("Točno ste odgovorili.")
+                print("Točno ste odgovorili.\n")
                 kPozI = ploca.index(5)
                 ploca[kPozI+1]=5
                 ploca[kPozI]=3
                 turtleMoveBoard()
             case 3:
-                print("Lovac je točno odgovorio, a Vi niste!")
+                print("Lovac je točno odgovorio, a Vi niste!\n")
                 if(ploca.index(7)==(ploca.index(5)-1)):
                     rezultat=1
                 else:
@@ -779,7 +785,7 @@ def drugaRundaKostur(): #a ja misl ovo pianja a nije
                     ploca[kPozL]=3
                     turtleMoveBoard()
             case 4:
-                print("Oboje ste točno odgovorili!")
+                print("Oboje ste točno odgovorili!\n")
                 kPozI = ploca.index(5)
                 ploca[kPozI+1]=5
                 ploca[kPozI]=3
@@ -804,7 +810,7 @@ def loviti():
     global ploca, ansL, ans2, nagrada
     ponuda()
     initTurleBoard()
-    print("No, dosta o tome sada! Vidjeti ćemo možeš li me uopće pobijediti! Ha!")
+    print("\nNo, dosta o tome sada! Vidjeti ćemo možeš li me uopće pobijediti! Ha!")
     drugaRundaKostur()
     
 
